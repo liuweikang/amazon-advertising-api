@@ -211,6 +211,13 @@ trait MakesReportCalls
     {
         return new TargetReport($this->downloadReport($location));
     }
+    // v3 header头
+    public function setReportingContentType()
+    {
+        $this->contentType = 'application/vnd.createasyncreportrequest.v3+json';
+        return $this;
+    }
+
     /**
      * v3 请求报告
      * @param ReportingReportParams $params
@@ -236,7 +243,6 @@ trait MakesReportCalls
      */
     public function requestReportingReport(ReportingReportParams $params): ReportingReportResponse
     {
-        $this->contentType = 'application/vnd.createasyncreportrequest.v3+json';
         $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('reporting/reports'), $params);
         return new ReportingReportResponse($this->decodeResponseBody($response, MimeType::JSON()));
     }
@@ -251,8 +257,7 @@ trait MakesReportCalls
      */
     public function getReportingReport(string $reportId) : ReportingReportResponse
     {
-        $this->contentType = 'application/vnd.createasyncreportrequest.v3+json';
-        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl( sprintf('reporting/reports/%s', $reportId)));
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl( sprintf('reporting/reports/%s', $reportId)));
         return new ReportingReportResponse($this->decodeResponseBody($response, MimeType::JSON()));
     }
 }
