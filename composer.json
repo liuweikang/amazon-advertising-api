@@ -1,5 +1,5 @@
 {
-  "name": "powersrc/amazon-advertising-api",
+  "name": "liuweikang/amazon-advertising-api",
   "type": "library",
   "description": "Amazon Advertising API Client Library",
   "keywords": [
@@ -35,7 +35,7 @@
     "ext-curl": "*",
     "ext-json": "*",
     "ext-zlib": "*",
-    "guzzlehttp/guzzle": "^7.0.1",
+    "guzzlehttp/guzzle": "^6.3",
     "myclabs/php-enum": "^1.6",
     "psr/log": "~1.0"
   },
