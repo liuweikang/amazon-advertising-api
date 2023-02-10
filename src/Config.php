@@ -141,6 +141,12 @@ final class Config
         return $this->apiVersion;
     }
 
+    public function setApiVersion($apiVersion)
+    {
+        $this->apiVersion = $apiVersion;
+        return $this;
+    }
+
     public function getAppVersion(): string
     {
         return $this->appVersion;
@@ -170,7 +176,7 @@ final class Config
     {
         $domain = $this->useSandbox ? $this->region->getSandboxDomain() : $this->region->getProdDomain();
 
-        return \sprintf('%s://%s/%s/', self::API_PROTOCOL, $domain, $this->apiVersion);
+        return \sprintf('%s://%s/', self::API_PROTOCOL, $domain) . (!$this->apiVersion ? '' : sprintf('%s/', $this->apiVersion) );
     }
 
     public function getTokenEndpoint(): string

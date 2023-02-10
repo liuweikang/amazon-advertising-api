@@ -90,6 +90,11 @@ class Client implements LoggerAwareInterface
     protected $httpOptions;
 
     /**
+     * @var string
+     */
+    protected $contentType;
+
+    /**
      * Amazon request identifier of the last request.
      *
      * @var string
@@ -184,6 +189,10 @@ class Client implements LoggerAwareInterface
 
         if ($this->profileId !== null) {
             $requestOptionsHeaders['Amazon-Advertising-API-Scope'] = $this->profileId;
+        }
+
+        if($this->contentType !== null) {
+            $requestOptionsHeaders['Content-Type'] = $this->contentType;
         }
 
         $options[RequestOptions::HEADERS] = $requestOptionsHeaders;
