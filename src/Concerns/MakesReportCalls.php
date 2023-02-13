@@ -39,7 +39,31 @@ trait MakesReportCalls
      */
     public function requestReport(ReportRecordType $type, ReportParams $params): ReportResponse
     {
-        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sp/' . $type->getValue() . '/report'), $params);
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('v2/sp/' . $type->getValue() . '/report'), $params);
+
+        return new ReportResponse($this->decodeResponseBody($response, MimeType::JSON()));
+    }
+    /**
+     * @throws ClassNotFoundException
+     * @throws HttpException
+     * @throws ReflectionException
+     * @throws GuzzleException
+     */
+    public function requestHsaReport(ReportRecordType $type, ReportParams $params): ReportResponse
+    {
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('v2/hsa/' . $type->getValue() . '/report'), $params);
+
+        return new ReportResponse($this->decodeResponseBody($response, MimeType::JSON()));
+    }
+    /**
+     * @throws ClassNotFoundException
+     * @throws HttpException
+     * @throws ReflectionException
+     * @throws GuzzleException
+     */
+    public function requestSdReport(ReportRecordType $type, ReportParams $params): ReportResponse
+    {
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sd/' . $type->getValue() . '/report'), $params);
 
         return new ReportResponse($this->decodeResponseBody($response, MimeType::JSON()));
     }

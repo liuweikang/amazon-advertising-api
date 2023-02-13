@@ -7,7 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Support;
 final class Version
 {
     public const APP = 'v0.0.1';
-    public const API = 'v2';
+    public const API = '';
 
     private function __construct()
     {
