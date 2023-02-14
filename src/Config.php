@@ -110,6 +110,10 @@ final class Config
     {
         return $this->auth->getClientId();
     }
+    public function getClientSecret(): string
+    {
+        return $this->auth->getClientSecret();
+    }
 
     public function canAuthorize(): bool
     {

@@ -58,14 +58,11 @@ final class HttpAuthManager implements HttpRequestAuth
      */
     private $validTill;
 
-    public function __construct(HttpClientInterface $httpClient, string $clientId, string $clientSecret, string $refreshToken, ?string $accessToken = null, ?int $validTill = null)
+    public function __construct(HttpClientInterface $httpClient, string $clientId, ?string $accessToken = null)
     {
         $this->httpClient   = $httpClient;
         $this->clientId     = $clientId;
-        $this->clientSecret = $clientSecret;
         $this->accessToken  = $accessToken;
-        $this->refreshToken = $refreshToken;
-        $this->validTill    = $validTill;
     }
 
     /**
@@ -74,14 +71,6 @@ final class HttpAuthManager implements HttpRequestAuth
     public function getAccessToken(): ?string
     {
         return $this->accessToken;
-    }
-
-    /**
-     * Return the current timestamp expiration of the access token.
-     */
-    public function getValidTill(): ?int
-    {
-        return $this->validTill;
     }
 
     /**
@@ -180,6 +169,7 @@ final class HttpAuthManager implements HttpRequestAuth
 
     private function authTokenIsValid(): bool
     {
+        return true;
         if ( ! $this->authTokenIsExpired()) {
             return true;
         }
@@ -195,6 +185,7 @@ final class HttpAuthManager implements HttpRequestAuth
 
     private function authTokenIsExpired(): bool
     {
+        return true;
         return $this->validTill === null || (int) $this->validTill < \time();
     }
 }

@@ -13,6 +13,7 @@ use PowerSrc\AmazonAdvertisingApi\Concerns\HandlesApiErrors;
 use PowerSrc\AmazonAdvertisingApi\Concerns\MakesAdGroupApiCalls;
 use PowerSrc\AmazonAdvertisingApi\Concerns\MakesCampaignApiCalls;
 use PowerSrc\AmazonAdvertisingApi\Concerns\MakesKeywordApiCalls;
+use PowerSrc\AmazonAdvertisingApi\Concerns\MakesOAuthApiCalls;
 use PowerSrc\AmazonAdvertisingApi\Concerns\MakesPortfolioApiCalls;
 use PowerSrc\AmazonAdvertisingApi\Concerns\MakesProductAdApiCalls;
 use PowerSrc\AmazonAdvertisingApi\Concerns\MakesProfileApiCalls;
@@ -43,6 +44,7 @@ class Client implements LoggerAwareInterface
     use MakesProfileApiCalls;
     use MakesSnapshotCalls;
     use MakesReportCalls;
+    use MakesOAuthApiCalls;
 
     /**
      * @var HttpRequestAuth
