@@ -34,5 +34,4 @@ interface HttpRequestAuth
      */
     public function getClientId(): string;
 
-    public function getClientSecret(): string;
 }

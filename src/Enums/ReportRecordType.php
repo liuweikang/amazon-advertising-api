@@ -20,4 +20,5 @@ class ReportRecordType extends Enum
     public const KEYWORDS    = 'keywords';
     public const TARGETS     = 'targets';
     public const ASINS       = 'asins';
+    public const ADS         = 'ads';
 }

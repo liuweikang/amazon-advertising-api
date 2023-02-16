@@ -76,7 +76,7 @@ trait MakesReportCalls
      */
     public function getReport(string $reportId): ReportResponse
     {
-        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('reports/' . $reportId));
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('v2/reports/' . $reportId));
 
         return new ReportResponse($this->decodeResponseBody($response, MimeType::JSON()));
     }

@@ -185,7 +185,7 @@ final class HttpAuthManager implements HttpRequestAuth
 
     private function authTokenIsExpired(): bool
     {
-        return true;
+        return false;
         return $this->validTill === null || (int) $this->validTill < \time();
     }
 }

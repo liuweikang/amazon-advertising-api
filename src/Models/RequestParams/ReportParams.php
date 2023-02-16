@@ -21,6 +21,8 @@ abstract class ReportParams extends RequestParams
         'segment'    => null,
         'reportDate' => null,
         'metrics'    => null,
+        'creativeType'    => null,
+        'tactic'    => null,
     ];
 
     /**
@@ -32,6 +34,8 @@ abstract class ReportParams extends RequestParams
         'segment'    => 'setSegment',
         'reportDate' => 'setReportDate',
         'metrics'    => 'setMetrics',
+        'creativeType'    => 'setCreativeType',
+        'tactic'    => 'setTactic',
     ];
 
     /**
@@ -46,13 +50,13 @@ abstract class ReportParams extends RequestParams
     /**
      * @throws InvalidMetricListTypeException
      */
-    public function setMetrics(ReportMetricsList $metricsList): self
+    public function setMetrics($metricsList): self
     {
-        $metricsListClass = $this->getMetricsListType();
-        if ( ! $metricsList instanceof $metricsListClass) {
-            $msg = sprintf('Invalid metrics list type. Instance of `%s` provided but instance of `%s` required.', get_class($metricsList), $metricsListClass);
-            throw new InvalidMetricListTypeException($msg);
-        }
+        // $metricsListClass = $this->getMetricsListType();
+        // if ( ! $metricsList instanceof $metricsListClass) {
+        //     $msg = sprintf('Invalid metrics list type. Instance of `%s` provided but instance of `%s` required.', get_class($metricsList), $metricsListClass);
+        //     throw new InvalidMetricListTypeException($msg);
+        // }
 
         $this->params['metrics'] = $metricsList;
 
@@ -69,6 +73,19 @@ abstract class ReportParams extends RequestParams
     public function setReportDate(string $reportDate): self
     {
         $this->params['reportDate'] = $reportDate;
+
+        return $this;
+    }
+
+    public function setCreativeType(string $creativeType): self
+    {
+        $this->params['creativeType'] = $creativeType;
+
+        return $this;
+    }
+    public function setTactic($tactic): self
+    {
+        $this->params['tactic'] = $tactic;
 
         return $this;
     }
