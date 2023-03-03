@@ -22,16 +22,19 @@ final class Region implements RegionInterface
             'prod'    => 'advertising-api.amazon.com',
             'sandbox' => 'advertising-api-test.amazon.com',
             'token'   => 'api.amazon.com/auth/o2/token',
+            'auth_url'   => 'www.amazon.com/ap/oa',
         ],
         RegionCode::EUROPEAN_UNION => [
             'prod'    => 'advertising-api-eu.amazon.com',
             'sandbox' => 'advertising-api-test.amazon.com',
             'token'   => 'api.amazon.com.uk/auth/o2/token',
+            'auth_url'   => 'eu.account.amazon.com/ap/oa',
         ],
         RegionCode::FAR_EAST => [
             'prod'    => 'advertising-api-fe.amazon.com',
             'sandbox' => 'advertising-api-test.amazon.com',
             'token'   => 'api.amazon.co.jp/auth/o2/token',
+            'auth_url'   => 'apac.account.amazon.com/ap/oa',
         ],
     ];
 
@@ -53,5 +56,10 @@ final class Region implements RegionInterface
     public function getTokenDomain(): string
     {
         return $this->regions[$this->regionCode->getValue()]['token'];
+    }
+
+    public function getAuthUrl(): string
+    {
+        return $this->regions[$this->regionCode->getValue()]['auth_url'];
     }
 }
