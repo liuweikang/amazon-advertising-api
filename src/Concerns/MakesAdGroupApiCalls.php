@@ -18,6 +18,7 @@ use PowerSrc\AmazonAdvertisingApi\Models\Lists\AdGroup\AdGroupExList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\AdGroup\AdGroupList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\AdGroup\AdGroupResponseList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\AdGroup\AdGroupUpdateList;
+use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\AdGroupCommonParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\AdGroupParams;
 use ReflectionException;
 
@@ -149,5 +150,50 @@ trait MakesAdGroupApiCalls
         $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('adGroups/' . $adGroupId . '/bidRecommendations'));
 
         return new AdGroupBidRecommendation($this->decodeResponseBody($response, MimeType::JSON()));
+    }
+
+    /**
+     * sb 广告组
+     * @param AdGroupCommonParams $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-03-08
+     */
+    public function listSbAdGroups(?AdGroupCommonParams $params = null)
+    {
+        $this->accept = 'application/vnd.sbadgroupresource.v4+json';
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sb/v4/adGroups/list'), $params);
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
+    }
+
+    /**
+     * sd 广告组
+     * @param AdGroupParams $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-03-08
+     */
+    public function listSdAdGroups(?AdGroupParams $params = null)
+    {
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sd/adGroups', $params));
+
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
+    }
+    /**
+     * sp 广告组
+     * @param AdGroupCommonParams $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-03-08
+     */
+    public function listSpAdGroups(?AdGroupCommonParams $params = null)
+    {
+        $this->accept = $this->contentType = 'application/vnd.spadGroup.v3+json';
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sp/adGroups/list'), $params);
+
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
     }
 }

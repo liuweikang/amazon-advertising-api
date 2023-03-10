@@ -97,6 +97,11 @@ class Client implements LoggerAwareInterface
     protected $contentType;
 
     /**
+     *@var string
+     */
+    protected $accept;
+
+    /**
      * Amazon request identifier of the last request.
      *
      * @var string
@@ -195,6 +200,10 @@ class Client implements LoggerAwareInterface
 
         if($this->contentType !== null) {
             $requestOptionsHeaders['Content-Type'] = $this->contentType;
+        }
+
+        if($this->accept !== null) {
+            $requestOptionsHeaders['Accept'] = $this->accept;
         }
 
         $options[RequestOptions::HEADERS] = $requestOptionsHeaders;

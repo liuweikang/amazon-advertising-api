@@ -17,6 +17,7 @@ use PowerSrc\AmazonAdvertisingApi\Models\Lists\Campaign\CampaignExList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Campaign\CampaignList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Campaign\CampaignResponseList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Campaign\CampaignUpdateList;
+use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\CampaignCommonParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\CampaignParams;
 use ReflectionException;
 
@@ -130,5 +131,47 @@ trait MakesCampaignApiCalls
         $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sp/campaigns/extended', $params));
 
         return new CampaignExList($this->decodeResponseBody($response, MimeType::JSON()));
+    }
+    /**
+     * sb 广告活动
+     * @param CampaignSbParams $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-03-08
+     */
+    public function listSbCampaigns(?CampaignCommonParams $params = null)
+    {
+        $this->accept = 'application/vnd.sbcampaignresource.v4+json';
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sb/v4/campaigns/list'), $params);
+
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
+    }
+    /**
+     * sd 广告活动
+     * @param CampaignParams $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-03-08
+     */
+    public function listSdCampaigns(?CampaignParams $params = null)
+    {
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sd/campaigns', $params));
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
+    }
+    /**
+     * sp 广告活动
+     * @param CampaignCommonParams $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-03-08
+     */
+    public function listSpCampaigns(?CampaignCommonParams $params = null)
+    {
+        $this->accept = $this->contentType = 'application/vnd.spCampaign.v3+json';
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sp/campaigns/list'), $params);
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
     }
 }
