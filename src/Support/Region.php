@@ -27,7 +27,7 @@ final class Region implements RegionInterface
         RegionCode::EUROPEAN_UNION => [
             'prod'    => 'advertising-api-eu.amazon.com',
             'sandbox' => 'advertising-api-test.amazon.com',
-            'token'   => 'api.amazon.com.uk/auth/o2/token',
+            'token'   => 'api.amazon.co.uk/auth/o2/token',
             'auth_url'   => 'eu.account.amazon.com/ap/oa',
         ],
         RegionCode::FAR_EAST => [
