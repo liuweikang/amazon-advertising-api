@@ -157,7 +157,7 @@ trait MakesCampaignApiCalls
      */
     public function listSdCampaigns(?CampaignParams $params = null)
     {
-        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sd/campaigns', $params));
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sd/campaigns/extended', $params));
         return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
     }
     /**

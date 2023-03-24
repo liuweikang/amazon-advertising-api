@@ -177,7 +177,7 @@ trait MakesAdGroupApiCalls
      */
     public function listSdAdGroups(?AdGroupParams $params = null)
     {
-        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sd/adGroups', $params));
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sd/adGroups/extended', $params));
 
         return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
     }

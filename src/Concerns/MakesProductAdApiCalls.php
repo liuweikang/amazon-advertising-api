@@ -18,6 +18,7 @@ use PowerSrc\AmazonAdvertisingApi\Models\ProductAd;
 use PowerSrc\AmazonAdvertisingApi\Models\ProductAdEx;
 use PowerSrc\AmazonAdvertisingApi\Models\ProductAdResponse;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\ProductAdParams;
+use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\ProductAdsCommonParams;
 use ReflectionException;
 
 trait MakesProductAdApiCalls
@@ -107,5 +108,35 @@ trait MakesProductAdApiCalls
         $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sp/productAds/extended', $params));
 
         return new ProductAdExList($this->decodeResponseBody($response, MimeType::JSON()));
+    }
+
+
+    /**
+     * sd 广告商品
+     * @param ProductAdParams $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-03-08
+     */
+    public function listSdProductAds(?ProductAdParams $params = null)
+    {
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sd/productAds/extended', $params));
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
+    }
+
+    /**
+     * sp 广告商品
+     * @param ProductAdsCommonParams $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-03-08
+     */
+    public function listSpProductAds(?ProductAdsCommonParams $params = null)
+    {
+        $this->accept = $this->contentType = 'application/vnd.spProductAd.v3+json';
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sp/productAds/list'), $params);
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
     }
 }
