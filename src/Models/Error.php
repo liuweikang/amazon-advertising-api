@@ -26,7 +26,7 @@ class Error extends Model
      *
      * @var string
      */
-    public $details;
+    public $detail;
 
     /**
      * An Amazon generated identifier for the request.
@@ -44,7 +44,7 @@ class Error extends Model
      */
     private $casts = [
         'code'      => PrimitiveType::STRING,
-        'details'   => PrimitiveType::STRING,
+        'detail'   => PrimitiveType::STRING,
         'requestId' => PrimitiveType::STRING,
     ];
 }
