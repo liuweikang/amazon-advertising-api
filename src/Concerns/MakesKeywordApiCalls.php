@@ -38,6 +38,7 @@ use PowerSrc\AmazonAdvertisingApi\Models\NegativeKeywordResponse;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\CampaignNegativeKeywordParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\KeywordBidRecommendationParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\KeywordParams;
+use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\KeywordsCommonParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\NegativeKeywordParams;
 use ReflectionException;
 
@@ -427,5 +428,34 @@ trait MakesKeywordApiCalls
         $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('keywords/bidRecommendations'), $params);
 
         return new BidRecommendationsResponse($this->decodeResponseBody($response, MimeType::JSON()));
+    }
+
+    /**
+     * sb关键词列表
+     * @param KeywordParams|null $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-04-03
+     */
+    public function listSbKeywords(KeywordParams $params = null)
+    {
+        $this->accept = 'application/vnd.sbkeyword.v3.2+json';
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sb/keywords', $params));
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
+    }
+    /**
+     * sp关键词列表
+     * @param KeywordsCommonParams|null $params
+     * @description
+     * @author Bosh
+     * @throws
+     * @since 2023-04-03
+     */
+    public function listSpKeywords(KeywordsCommonParams $params = null)
+    {
+        $this->accept = $this->contentType = 'application/vnd.spKeyword.v3+json';
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sp/keywords/list'), $params);
+        return json_decode(json_encode($this->decodeResponseBody($response, MimeType::JSON())), true);
     }
 }

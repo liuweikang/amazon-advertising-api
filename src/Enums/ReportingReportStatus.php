@@ -12,6 +12,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Enums;
 class ReportingReportStatus extends Enum
 {
     public const FAILURE     = 'FAILURE';
+    public const FAILED     = 'FAILED';
     public const PROCESSING = 'PROCESSING';
     public const PENDING = 'PENDING';
     public const COMPLETED = 'COMPLETED';
@@ -23,7 +24,7 @@ class ReportingReportStatus extends Enum
 
     public function isFailure(): bool
     {
-        return $this->getValue() === static::FAILURE;
+        return in_array($this->getValue(), [static::FAILURE, static::FAILED]);
     }
 
     public function isInProgress(): bool
