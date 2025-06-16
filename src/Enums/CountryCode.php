@@ -26,6 +26,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Enums;
  * @method static CountryCode SA()
  * @method static CountryCode IN()
  * @method static CountryCode CN()
+ * @method static CountryCode IE()
  */
 class CountryCode extends Enum
 {
@@ -50,4 +51,5 @@ class CountryCode extends Enum
     public const SA = 'SA';
     public const IN = 'IN';
     public const CN = 'CN';
+    public const IE = 'IE';
 }
