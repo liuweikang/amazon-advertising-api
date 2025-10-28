@@ -34,4 +34,5 @@ class CurrencyCode extends Enum
     public const PLN = 'PLN';
     public const SGD = 'SGD';
     public const TRY = 'TRY';
+    public const SAR = 'SAR';
 }
